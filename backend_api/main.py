@@ -165,10 +165,8 @@ def analyze_text_sentiment(text):
     # Get sentiment for all sentences in the document
     sentence_sentiment = []
     for sentence in response.sentences:
-        item = {}
-        item["text"] = sentence.text.content
-        item["sentiment score"] = sentence.sentiment.score
-        item["sentiment magnitude"] = sentence.sentiment.magnitude
+        item = {"text": sentence.text.content, "sentiment score": sentence.sentiment.score,
+                "sentiment magnitude": sentence.sentiment.magnitude}
         sentence_sentiment.append(item)
 
     return sentence_sentiment

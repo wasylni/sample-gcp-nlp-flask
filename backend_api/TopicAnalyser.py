@@ -4,8 +4,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 
+
 class TopicAnalyser:
-    def __init__(self, model_type = "nmf", data = None):
+    def __init__(self, model_type="nmf", data=None):
         self.model_type = model_type
         self.data = data
 
@@ -16,7 +17,7 @@ class TopicAnalyser:
 
     def analyse(self):
         # TODO: participants should consider changing dataset to match the brief.
-        if (self.data == None):
+        if self.data == None:
             dataset = fetch_20newsgroups(shuffle=True, random_state=1, remove=('headers', 'footers', 'quotes'))
             documents = dataset.data
 
@@ -38,7 +39,7 @@ class TopicAnalyser:
             tf_feature_names = tf_vectorizer.get_feature_names()
             # Run LDA
             model = LatentDirichletAllocation(n_components=no_topics, max_iter=5, learning_method='online',
-                                        learning_offset=50., random_state=0).fit(tf)
+                                              learning_offset=50., random_state=0).fit(tf)
         else:
             logging.exception("Invalid model_type: {}".format(self.model_type))
 
